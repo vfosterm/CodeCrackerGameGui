@@ -1,10 +1,10 @@
 # icon https://visualpharm.com/free-icons/matrix%20desktop-595b40b75ba036ed117d860b
-import random
+# coding=utf8
 
+import random
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 import os
-import faulthandler
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -243,7 +243,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.label.setText(_translate("MainWindow", "    "))
         self.label.setAlignment(QtCore.Qt.AlignHCenter)
         self.title_label.setText(_translate("MainWindow", "<html><head/><body><pre align=\"center\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a name=\"maincontent\"/> ██████╗ ██████╗ ██████╗ ███████╗         ██████╗██████╗  █████╗  ██████╗██╗  ██╗███████╗██████╗ </pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">██╔════╝██╔═══██╗██╔══██╗██╔════╝        ██╔════╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗</pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">██║     ██║   ██║██║  ██║█████╗          ██║     ██████╔╝███████║██║     █████╔╝ █████╗  ██████╔╝</pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">██║     ██║   ██║██║  ██║██╔══╝          ██║     ██╔══██╗██╔══██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗</pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">╚██████╗╚██████╔╝██████╔╝███████╗███████╗╚██████╗██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██║  ██║</pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝</pre><p align=\"center\"><br/></p></body></html>"))
-
+        self.title_label.setTextFormat(QtCore.Qt.RichText)
     def center_on_screen(self):
         resolution = QtWidgets.QDesktopWidget().screenGeometry()
         self.move(int((resolution.width() / 2) - (self.frameSize().width() / 2)), int((resolution.height() / 2) - (self.frameSize().height() / 2)))
@@ -302,6 +302,8 @@ class MainWindow(QtWidgets.QMainWindow):
         win.setWindowIcon(QtGui.QIcon(self.icon))
         win.setWindowTitle(" ")
         win.setText("<html><head/><body><pre style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a name=\"maincontent\"/><span style=\" font-family:'SF Mono'; font-size:6pt;\"/><span style=\" font-family:'SF Mono'; font-size:6pt;\">██████╗ ██████╗ ██████╗ ███████╗         ██████╗██████╗  █████╗  ██████╗██╗  ██╗███████╗██████╗ </span></pre><pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SF Mono'; font-size:6pt;\">██╔════╝██╔═══██╗██╔══██╗██╔════╝        ██╔════╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗</span></pre><pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SF Mono'; font-size:6pt;\">██║     ██║   ██║██║  ██║█████╗          ██║     ██████╔╝███████║██║     █████╔╝ █████╗  ██║  ██║</span></pre><pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SF Mono'; font-size:6pt;\">██║     ██║   ██║██║  ██║██╔══╝          ██║     ██╔══██╗██╔══██║██║     ██╔═██╗ ██╔══╝  ██║  ██║</span></pre><pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SF Mono'; font-size:6pt;\">╚██████╗╚██████╔╝██████╔╝███████╗███████╗╚██████╗██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██████╔╝</span></pre><pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SF Mono'; font-size:6pt;\"> ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ </span></pre><pre style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'SF Mono'; font-size:6pt;\"/></pre><p><br/></p></body></html>")
+        win.setTextFormat(QtCore.Qt.RichText)
+
         new_game_btn = win.addButton("New Game", QtWidgets.QMessageBox.YesRole)
         quit_game_btn = win.addButton("Quit Game", QtWidgets.QMessageBox.NoRole)
 
@@ -324,6 +326,7 @@ class MainWindow(QtWidgets.QMainWindow):
         win.setWindowIcon(QtGui.QIcon(self.icon))
         win.setWindowTitle(" ")
         win.setText("<html><head/><body><pre style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a name=\"maincontent\"/><span style=\" font-family:\'SF Mono\'; font-size:6pt;\"/><span style=\" font-family:\'SF Mono\'; font-size:6pt;\">██████╗  █████╗ ███╗   ███╗███████╗         ██████╗ ██╗   ██╗███████╗██████╗ </span></pre><pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SF Mono\'; font-size:6pt;\">██╔════╝ ██╔══██╗████╗ ████║██╔════╝        ██╔═══██╗██║   ██║██╔════╝██╔══██╗</span></pre><pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SF Mono\'; font-size:6pt;\">██║  ███╗███████║██╔████╔██║█████╗          ██║   ██║██║   ██║█████╗  ██████╔╝</span></pre><pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SF Mono\'; font-size:6pt;\">██║   ██║██╔══██║██║╚██╔╝██║██╔══╝          ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗</span></pre><pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SF Mono\'; font-size:6pt;\">╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗███████╗╚██████╔╝ ╚████╔╝ ███████╗██║  ██║</span></pre><pre style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SF Mono\'; font-size:6pt;\"> ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝ ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝</span></pre><pre style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SF Mono\'; font-size:6pt;\"/></pre><p><br/></p></body></html>")
+        win.setTextFormat(QtCore.Qt.RichText)
         new_game_btn = win.addButton("New Game", QtWidgets.QMessageBox.YesRole)
         quit_game_btn = win.addButton("Quit Game", QtWidgets.QMessageBox.NoRole)
 
@@ -386,7 +389,6 @@ def guess_out_string(guess_out):
 
 
 if __name__ == '__main__':
-    faulthandler.enable()
     app = QtWidgets.QApplication(sys.argv)
     ui = MainWindow()
     sys.exit(app.exec_())
