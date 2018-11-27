@@ -28,8 +28,6 @@ class MainWindow(QtWidgets.QMainWindow):
         #connect buttons to functions
         self.start_btn.clicked.connect(self.play)
 
-
-
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("MainWindow", " "))
@@ -260,7 +258,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.code_list = [self.lcdNumber, self.lcdNumber_2, self.lcdNumber_3, self.lcdNumber_4, self.lcdNumber_5, self.lcdNumber_6, self.lcdNumber_7, self.lcdNumber_8, self.lcdNumber_9, self.lcdNumber_10]
         self.guess_list = [self.label, self.label_2, self.label_3, self.label_4, self.label_5, self.label_6, self.label_7, self.label_8, self.label_9, self.label_10]
 
-
     def show_splash(self):
         self.centralwidget = QtWidgets.QWidget(self)
         self.centralwidget.setObjectName("centralwidget")
@@ -355,7 +352,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.game_turn = 0
         self.code = gen_code()
         self.show()
-
 
     def win_game(self):
         self.hide()
