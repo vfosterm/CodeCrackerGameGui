@@ -17,6 +17,57 @@ class MainWindow(QtWidgets.QMainWindow):
         self.center_on_screen()
         self.icon = os.path.join(os.getcwd(), 'code_cracker_icon.svg')
         self.setWindowIcon(QtGui.QIcon(self.icon))
+        #game variables
+        self.code = gen_code()
+        self.current_guess = ''
+        self.game_turn = 0
+        #loadui
+        self.show_splash()
+        self.show()
+        self.retranslate_splash()
+        #connect buttons to functions
+        self.start_btn.clicked.connect(self.play)
+
+
+
+    def retranslateUi(self):
+        _translate = QtCore.QCoreApplication.translate
+        self.setWindowTitle(_translate("MainWindow", " "))
+        self.guess_input.setPlaceholderText(_translate("MainWindow", "InputCode"))
+        self.new_game_btn.setText(_translate("MainWindow", "NewGame"))
+        self.guess_btn.setText(_translate("MainWindow", "Crack"))
+        self.quit_btn.setText(_translate("MainWindow", "Quit"))
+        self.label_10.setText(_translate("MainWindow", "    "))
+        self.label_10.setAlignment(QtCore.Qt.AlignHCenter)
+        self.label_9.setText(_translate("MainWindow", "    "))
+        self.label_9.setAlignment(QtCore.Qt.AlignHCenter)
+        self.label_8.setText(_translate("MainWindow", "    "))
+        self.label_8.setAlignment(QtCore.Qt.AlignHCenter)
+        self.label_7.setText(_translate("MainWindow", "    "))
+        self.label_7.setAlignment(QtCore.Qt.AlignHCenter)
+        self.label_6.setText(_translate("MainWindow", "    "))
+        self.label_6.setAlignment(QtCore.Qt.AlignHCenter)
+        self.label_5.setText(_translate("MainWindow", "    "))
+        self.label_5.setAlignment(QtCore.Qt.AlignHCenter)
+        self.label_4.setText(_translate("MainWindow", "    "))
+        self.label_4.setAlignment(QtCore.Qt.AlignHCenter)
+        self.label_3.setText(_translate("MainWindow", "    "))
+        self.label_3.setAlignment(QtCore.Qt.AlignHCenter)
+        self.label_2.setText(_translate("MainWindow", "    "))
+        self.label_2.setAlignment(QtCore.Qt.AlignHCenter)
+        self.label.setText(_translate("MainWindow", "    "))
+        self.label.setAlignment(QtCore.Qt.AlignHCenter)
+        self.title_label.setText(_translate("MainWindow", "<html><head/><body><pre align=\"center\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a name=\"maincontent\"/> ██████╗ ██████╗ ██████╗ ███████╗         ██████╗██████╗  █████╗  ██████╗██╗  ██╗███████╗██████╗ </pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">██╔════╝██╔═══██╗██╔══██╗██╔════╝        ██╔════╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗</pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">██║     ██║   ██║██║  ██║█████╗          ██║     ██████╔╝███████║██║     █████╔╝ █████╗  ██████╔╝</pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">██║     ██║   ██║██║  ██║██╔══╝          ██║     ██╔══██╗██╔══██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗</pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">╚██████╗╚██████╔╝██████╔╝███████╗███████╗╚██████╗██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██║  ██║</pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝</pre><p align=\"center\"><br/></p></body></html>"))
+        self.title_label.setTextFormat(QtCore.Qt.RichText)
+
+    def retranslate_splash(self):
+        _translate = QtCore.QCoreApplication.translate
+        self.setWindowTitle(_translate("MainWindow", " "))
+        self.title_label.setText(_translate("MainWindow", "<html><head/><body><pre align=\"center\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a name=\"maincontent\"/><span style=\" font-family:\'SF Mono\';\"/><span style=\" font-family:\'SF Mono\';\">██████╗ ██████╗ ██████╗ ███████╗         ██████╗██████╗  █████╗  ██████╗██╗  ██╗███████╗██████╗ </span></pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SF Mono\';\">██╔════╝██╔═══██╗██╔══██╗██╔════╝        ██╔════╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗</span></pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SF Mono\';\">██║     ██║   ██║██║  ██║█████╗          ██║     ██████╔╝███████║██║     █████╔╝ █████╗  ██████╔╝</span></pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SF Mono\';\">██║     ██║   ██║██║  ██║██╔══╝          ██║     ██╔══██╗██╔══██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗</span></pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SF Mono\';\">╚██████╗╚██████╔╝██████╔╝███████╗███████╗╚██████╗██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██║  ██║</span></pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'SF Mono\';\"> ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝</span></pre></body></html>"))
+        self.intruction_label.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Welcome to Code Cracker</p><p><span style=\" font-size:8pt;\">Instructions:</span></p><p><span style=\" font-size:8pt;\">The computer has generated a four digit number that you must guess.</span></p><p><span style=\" font-size:8pt;\">You are able to see how close you are to guessing the correct number.</span></p><p><span style=\" font-size:8pt;\">A circle [O] signifies that you have a correct number in the correct place</span></p><p><span style=\" font-size:8pt;\">A cross [X] signifies that you have a correct number in the incorrect place</span></p><p><span style=\" font-size:8pt;\">A line [-] is a place holder</span></p><p><span style=\" font-size:8pt;\">You have 10 guesses. </span></p><p><span style=\" font-size:8pt;\">The program will not tell you which number is in the correct place. </span></p><p><span style=\" font-size:8pt;\">This you must figure out for yourself.</span></p><p align=\"center\"><span style=\" font-size:8pt;\">Good Luck</span></p></body></html>"))
+        self.start_btn.setText(_translate("MainWindow", "Play"))
+
+    def show_game(self):
         # Begin UI
         self.centralwidget = QtWidgets.QWidget(self)
         self.centralwidget.setObjectName("centralwidget")
@@ -29,7 +80,7 @@ class MainWindow(QtWidgets.QMainWindow):
         spacerItem1 = QtWidgets.QSpacerItem(158, 20, QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem1)
         self.guess_input = QtWidgets.QLineEdit(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.guess_input.sizePolicy().hasHeightForWidth())
@@ -200,57 +251,67 @@ class MainWindow(QtWidgets.QMainWindow):
         spacerItem7 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout_2.addItem(spacerItem7, 2, 0, 1, 1)
         self.setCentralWidget(self.centralwidget)
-        self.retranslateUi()
-        QtCore.QMetaObject.connectSlotsByName(self)
-        # end UI
-        self.code_list = [self.lcdNumber, self.lcdNumber_2, self.lcdNumber_3, self.lcdNumber_4, self.lcdNumber_5, self.lcdNumber_6, self.lcdNumber_7, self.lcdNumber_8, self.lcdNumber_9, self.lcdNumber_10]
-        self.guess_list = [self.label, self.label_2, self.label_3, self.label_4, self.label_5, self.label_6, self.label_7, self.label_8, self.label_9, self.label_10]
-
-        self.code = gen_code()
-        self.current_guess = ''
-        self.game_turn = 0
-        # print(self.code)
+        #button logic
         self.quit_btn.clicked.connect(self.quit)
         self.guess_btn.clicked.connect(self.guess)
         self.guess_input.returnPressed.connect(self.guess_btn.click)
         self.new_game_btn.clicked.connect(self.new_game)
-        self.show()
+        #Display lists for game logic
+        self.code_list = [self.lcdNumber, self.lcdNumber_2, self.lcdNumber_3, self.lcdNumber_4, self.lcdNumber_5, self.lcdNumber_6, self.lcdNumber_7, self.lcdNumber_8, self.lcdNumber_9, self.lcdNumber_10]
+        self.guess_list = [self.label, self.label_2, self.label_3, self.label_4, self.label_5, self.label_6, self.label_7, self.label_8, self.label_9, self.label_10]
 
-    def retranslateUi(self):
-        _translate = QtCore.QCoreApplication.translate
-        self.setWindowTitle(_translate("MainWindow", " "))
-        self.guess_input.setPlaceholderText(_translate("MainWindow", "InputCode"))
-        self.new_game_btn.setText(_translate("MainWindow", "NewGame"))
-        self.guess_btn.setText(_translate("MainWindow", "Crack"))
-        self.quit_btn.setText(_translate("MainWindow", "Quit"))
-        self.label_10.setText(_translate("MainWindow", "    "))
-        self.label_10.setAlignment(QtCore.Qt.AlignHCenter)
-        self.label_9.setText(_translate("MainWindow", "    "))
-        self.label_9.setAlignment(QtCore.Qt.AlignHCenter)
-        self.label_8.setText(_translate("MainWindow", "    "))
-        self.label_8.setAlignment(QtCore.Qt.AlignHCenter)
-        self.label_7.setText(_translate("MainWindow", "    "))
-        self.label_7.setAlignment(QtCore.Qt.AlignHCenter)
-        self.label_6.setText(_translate("MainWindow", "    "))
-        self.label_6.setAlignment(QtCore.Qt.AlignHCenter)
-        self.label_5.setText(_translate("MainWindow", "    "))
-        self.label_5.setAlignment(QtCore.Qt.AlignHCenter)
-        self.label_4.setText(_translate("MainWindow", "    "))
-        self.label_4.setAlignment(QtCore.Qt.AlignHCenter)
-        self.label_3.setText(_translate("MainWindow", "    "))
-        self.label_3.setAlignment(QtCore.Qt.AlignHCenter)
-        self.label_2.setText(_translate("MainWindow", "    "))
-        self.label_2.setAlignment(QtCore.Qt.AlignHCenter)
-        self.label.setText(_translate("MainWindow", "    "))
-        self.label.setAlignment(QtCore.Qt.AlignHCenter)
-        self.title_label.setText(_translate("MainWindow", "<html><head/><body><pre align=\"center\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a name=\"maincontent\"/> ██████╗ ██████╗ ██████╗ ███████╗         ██████╗██████╗  █████╗  ██████╗██╗  ██╗███████╗██████╗ </pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">██╔════╝██╔═══██╗██╔══██╗██╔════╝        ██╔════╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗</pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">██║     ██║   ██║██║  ██║█████╗          ██║     ██████╔╝███████║██║     █████╔╝ █████╗  ██████╔╝</pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">██║     ██║   ██║██║  ██║██╔══╝          ██║     ██╔══██╗██╔══██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗</pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">╚██████╗╚██████╔╝██████╔╝███████╗███████╗╚██████╗██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██║  ██║</pre><pre align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"> ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝</pre><p align=\"center\"><br/></p></body></html>"))
+
+    def show_splash(self):
+        self.centralwidget = QtWidgets.QWidget(self)
+        self.centralwidget.setObjectName("centralwidget")
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName("gridLayout")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.title_label = QtWidgets.QLabel(self.centralwidget)
+        font = QtGui.QFont()
+        font.setFamily("SF Mono")
+        font.setPointSize(4)
+        self.title_label.setFont(font)
         self.title_label.setTextFormat(QtCore.Qt.RichText)
+        self.title_label.setScaledContents(True)
+        self.title_label.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
+        self.title_label.setObjectName("title_label")
+        self.verticalLayout.addWidget(self.title_label)
+        self.intruction_label = QtWidgets.QLabel(self.centralwidget)
+        font = QtGui.QFont()
+        font.setFamily("SF Pro Display")
+        self.intruction_label.setFont(font)
+        self.intruction_label.setFrameShape(QtWidgets.QFrame.Panel)
+        self.intruction_label.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.intruction_label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.intruction_label.setWordWrap(True)
+        self.intruction_label.setObjectName("intruction_label")
+        self.verticalLayout.addWidget(self.intruction_label)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        spacerItem = QtWidgets.QSpacerItem(30, 32, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
+        self.start_btn = QtWidgets.QPushButton(self.centralwidget)
+        self.start_btn.setObjectName("start_btn")
+        self.horizontalLayout.addWidget(self.start_btn)
+        spacerItem1 = QtWidgets.QSpacerItem(30, 32, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem1)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
+        self.setCentralWidget(self.centralwidget)
+
     def center_on_screen(self):
         resolution = QtWidgets.QDesktopWidget().screenGeometry()
         self.move(int((resolution.width() / 2) - (self.frameSize().width() / 2)), int((resolution.height() / 2) - (self.frameSize().height() / 2)))
 
     def quit(self):
         sys.exit(app)
+
+    def play(self):
+        self.show_game()
+        self.retranslateUi()
+        self.show()
 
     # Game Logic here
     def guess(self):
@@ -267,7 +328,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
             if self.game_turn == 10:
                 self.game_over()
-
 
         self.guess_input.clear()
 
@@ -295,7 +355,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.game_turn = 0
         self.code = gen_code()
         self.show()
-        #print(self.code)
+
 
     def win_game(self):
         self.hide()
